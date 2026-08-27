@@ -25,9 +25,11 @@
     "nextjs-toploader": "^3.9.17",
     "react": "^18",
     "react-dom": "^18",
+    "recharts": "^3.10.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "web-personalization": "file:../web-personalization"
   },
   "devDependencies": {
     "@types/node": "^20",

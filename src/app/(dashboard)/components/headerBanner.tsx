@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Sun, CloudRain, Cloud, Zap, Moon, MapPin } from "lucide-react";
+import { getGreeting, getEnvironmentMessage } from "web-personalization";
 import { useWeather, WeatherCategory } from "./weatherContext";
 
 interface WeatherConfig {
@@ -49,7 +50,7 @@ interface HeaderBannerProps {
 }
 
 export default function HeaderBanner({ category }: HeaderBannerProps) {
-  const { weatherCategory, theme } = useWeather();
+  const { weatherCategory, theme, personalizedResult } = useWeather();
   const currentCategory = category || weatherCategory || "sunny";
   const [isGraphicVisible, setIsGraphicVisible] = useState<boolean>(true);
 
@@ -195,18 +196,29 @@ export default function HeaderBanner({ category }: HeaderBannerProps) {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white drop-shadow-sm uppercase flex items-center gap-2">
-            <span>Good Evening, tanvir</span>
+            <span>
+              {personalizedResult
+                ? `${getGreeting(personalizedResult.context.time)}, tanvir`
+                : "Good Evening, tanvir"}
+            </span>
             <span className="text-2xl">👋</span>
           </h1>
           <div className="flex flex-wrap items-center gap-2 mt-1.5 text-xs sm:text-sm font-medium text-white/90">
             <span className="flex items-center gap-1">
               <SmallIcon className="w-4 h-4 text-white/90" />
-              It&apos;s {config.condition.toLowerCase()} outside
+              {personalizedResult
+                ? getEnvironmentMessage(
+                    personalizedResult.context.weather.category,
+                    personalizedResult.context.temperature.category
+                  )
+                : `It's ${config.condition.toLowerCase()} outside`}
             </span>
             <span>•</span>
             <span className="flex items-center gap-1">
               <MapPin className="w-3.5 h-3.5" />
-              Dhaka, Bangladesh
+              {personalizedResult
+                ? `${personalizedResult.context.location.city || "Dhaka"}, ${personalizedResult.context.location.country || "Bangladesh"}`
+                : "Dhaka, Bangladesh"}
             </span>
           </div>
         </div>
@@ -217,10 +229,16 @@ export default function HeaderBanner({ category }: HeaderBannerProps) {
           <div className="flex flex-col items-end sm:items-start text-right sm:text-left">
             <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-extrabold tracking-tight text-white drop-shadow-sm leading-none">
               <SmallIcon className="w-6 h-6 text-white stroke-[2.5]" />
-              <span>{config.temp}</span>
+              <span>
+                {personalizedResult
+                  ? `${personalizedResult.context.temperature.value.toFixed(1)}°C`
+                  : config.temp}
+              </span>
             </div>
-            <span className="text-xs font-medium text-white/90 mt-1">
-              {config.condition}
+            <span className="text-xs font-medium text-white/90 mt-1 capitalize">
+              {personalizedResult
+                ? `${personalizedResult.context.weather.category} • ${personalizedResult.context.temperature.category}`
+                : config.condition}
             </span>
           </div>
 

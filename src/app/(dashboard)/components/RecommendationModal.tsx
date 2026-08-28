@@ -411,9 +411,8 @@ export default function RecommendationModal() {
       {/* Main Recommendation Modal Widget */}
       {isOpen && !isMinimized && (
         <div
-          className={`fixed z-[70] w-[calc(100vw-32px)] sm:w-[410px] max-h-[85vh] transition-all duration-500 ease-out ${
-            positionClasses[position]
-          } animate-in fade-in slide-in-from-bottom-5 duration-300`}
+          className={`fixed z-[70] w-[calc(100vw-32px)] sm:w-[410px] max-h-[85vh] transition-all duration-500 ease-out ${positionClasses[position]
+            } animate-in fade-in slide-in-from-bottom-5 duration-300`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -463,9 +462,8 @@ export default function RecommendationModal() {
 
                 <button
                   onClick={() => setShowSettings(!showSettings)}
-                  className={`p-1.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors ${
-                    showSettings ? "bg-slate-800 text-amber-400" : ""
-                  }`}
+                  className={`p-1.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors ${showSettings ? "bg-slate-800 text-amber-400" : ""
+                    }`}
                   title="Widget Settings"
                 >
                   <Sliders className="w-3.5 h-3.5" />
@@ -506,11 +504,10 @@ export default function RecommendationModal() {
                         <button
                           key={pos}
                           onClick={() => setPosition(pos)}
-                          className={`text-xs px-2 py-1.5 rounded-xl border text-capitalize font-medium transition-all ${
-                            position === pos
+                          className={`text-xs px-2 py-1.5 rounded-xl border text-capitalize font-medium transition-all ${position === pos
                               ? "bg-amber-500/20 border-amber-500/60 text-amber-300 font-bold"
                               : "bg-slate-800/60 border-slate-700/60 text-slate-400 hover:bg-slate-800 hover:text-white"
-                          }`}
+                            }`}
                         >
                           {pos.replace("-", " ")}
                         </button>
@@ -531,22 +528,20 @@ export default function RecommendationModal() {
                           setAutoDismissSeconds(sec);
                           setDismissCountdown(sec);
                         }}
-                        className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${
-                          autoDismissEnabled && autoDismissSeconds === sec
+                        className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${autoDismissEnabled && autoDismissSeconds === sec
                             ? "bg-cyan-500/20 border-cyan-500/60 text-cyan-300 font-bold"
                             : "bg-slate-800/60 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white"
-                        }`}
+                          }`}
                       >
                         {sec}s
                       </button>
                     ))}
                     <button
                       onClick={() => setAutoDismissEnabled(!autoDismissEnabled)}
-                      className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${
-                        !autoDismissEnabled
+                      className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${!autoDismissEnabled
                           ? "bg-rose-500/20 border-rose-500/60 text-rose-300 font-bold"
                           : "bg-slate-800/60 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white"
-                      }`}
+                        }`}
                     >
                       Off
                     </button>
@@ -564,22 +559,20 @@ export default function RecommendationModal() {
                           setReappearCooldownSeconds(sec);
                           if (isCooldown) setCooldownCountdown(sec);
                         }}
-                        className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${
-                          reappearCooldownSeconds === sec
+                        className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${reappearCooldownSeconds === sec
                             ? "bg-emerald-500/20 border-emerald-500/60 text-emerald-300 font-bold"
                             : "bg-slate-800/60 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white"
-                        }`}
+                          }`}
                       >
                         {sec}s
                       </button>
                     ))}
                     <button
                       onClick={() => setReappearCooldownSeconds(0)}
-                      className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${
-                        reappearCooldownSeconds === 0
+                      className={`text-xs py-1.5 rounded-xl border font-semibold transition-all ${reappearCooldownSeconds === 0
                           ? "bg-rose-500/20 border-rose-500/60 text-rose-300 font-bold"
                           : "bg-slate-800/60 border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white"
-                      }`}
+                        }`}
                     >
                       Off
                     </button>
@@ -591,11 +584,10 @@ export default function RecommendationModal() {
                   <span className="text-xs font-medium text-slate-300">Auto Rotate Carousel (10s):</span>
                   <button
                     onClick={() => setIsAutoRotating(!isAutoRotating)}
-                    className={`p-1.5 rounded-lg border text-xs flex items-center gap-1 font-bold transition-all ${
-                      isAutoRotating
+                    className={`p-1.5 rounded-lg border text-xs flex items-center gap-1 font-bold transition-all ${isAutoRotating
                         ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
                         : "bg-slate-800 border-slate-700 text-slate-400"
-                    }`}
+                      }`}
                   >
                     {isAutoRotating ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
                     {isAutoRotating ? "Active" : "Paused"}
@@ -637,9 +629,9 @@ export default function RecommendationModal() {
                   <span className="truncate">
                     {personalizedResult
                       ? `${personalizedResult.context.location.city || "Dhaka"} • ${getEnvironmentMessage(
-                          personalizedResult.context.weather.category,
-                          personalizedResult.context.temperature.category
-                        )}`
+                        personalizedResult.context.weather.category,
+                        personalizedResult.context.temperature.category
+                      )}`
                       : "Live Personalization Connected"}
                   </span>
                 </div>
@@ -675,11 +667,10 @@ export default function RecommendationModal() {
                             setCurrentIndex(idx);
                             setProgress(0);
                           }}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${
-                            idx === safeIndex
+                          className={`h-1.5 rounded-full transition-all duration-300 ${idx === safeIndex
                               ? "w-4 bg-gradient-to-r from-amber-400 to-orange-400"
                               : "w-1.5 bg-slate-700 hover:bg-slate-500"
-                          }`}
+                            }`}
                         />
                       ))}
                     </div>

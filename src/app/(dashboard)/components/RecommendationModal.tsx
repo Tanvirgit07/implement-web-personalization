@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { useWeather, WeatherCategory } from "./weatherContext";
 import { toast } from "sonner";
-import { getGreeting, getEnvironmentMessage, type TimePeriod } from "web-personalization";
+import { getGreeting, getEnvironmentMessage, trackClick, type TimePeriod } from "web-personalization";
 
 export type ModalPosition = "bottom-right" | "bottom-left" | "top-right" | "center";
 
@@ -333,6 +333,15 @@ export default function RecommendationModal() {
   };
 
   const handleAction = (item: RecommendationItem) => {
+    try {
+      trackClick({
+        title: item.title,
+        message: item.message,
+        category: item.category,
+      });
+    } catch {
+      // ignore
+    }
     toast.success(`Action Triggered: "${item.title}"`, {
       description: item.message,
       icon: <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
